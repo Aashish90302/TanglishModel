@@ -1,4 +1,4 @@
-# this file hadels all the things for the model
+# this file handels all the things for the model
 import json
 import re 
 from transformers import AutoTokenizer , AutoModelForSeq2SeqLM
@@ -26,8 +26,9 @@ with open(r'chunkData.json' , 'r') as file:
 # add the new word
 def AddToData(key,value):
     # this function add the new word to the dataset learnedWords.jsonl
+    # key ---> english word | value --> tanglish word
     with open(r'learnedWords.jsonl', 'a') as file:
-        data = {key:value}
+        data = {"en": key.lower(), "ta": value.lower()}       
         file.write(json.dumps(data) + '\n')
 
 
@@ -124,4 +125,5 @@ def main(text):
         result_words.append(word)
     
     return ' '.join(result_words)
+
 
